@@ -1,0 +1,20 @@
+{
+  "name": "node_examples",
+  "version": "1.0.0",
+  "description": "\"Simple Node Examples\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VaaibhaviSingh/NodeJs.git"
+  },
+  "author": "Vaaibhavi Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VaaibhaviSingh/NodeJs/issues"
+  },
+  "homepage": "https://github.com/VaaibhaviSingh/NodeJs#readme"
+}
