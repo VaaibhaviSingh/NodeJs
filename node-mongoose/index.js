@@ -25,10 +25,28 @@ connect.then((db) => {
     .then((dish) => {
     	console.log(dish);
    		//exec() will ensure that this is executed
-   		return Dishes.find({}).exec();
+   		return Dishes.findByIdAndUpdate(dish._id, {
+    	    $set: {description: 'Updated Test'}
+    	},{
+    	//Once the update of the dish is complete, then this will return the updated dish back to us
+    	new: true
+   		})
+   		.exec();
    	})
-   	.then((dishes) => {
-   		console.log(dishes);
+   	.then((dish) => {
+   		console.log(dish);
+
+   		dish.comments.push({
+   			//We can push the comments document in here
+   			rating: 5,
+   			comment: 'I am getting a sinking feeling!',
+   			author: 'Leonardo di Carpaccio'
+   		});
+
+   		return dish.save();
+    })
+    .then((dish) => {
+    	console.log(dish);
 
    		return mongoose.connection.db.collection('dishes').drop();
    	})
