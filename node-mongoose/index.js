@@ -17,28 +17,25 @@ connect.then((db) => {
 
 	console.log('Connected correctly to server');
 
-    var newDish = Dishes({
+    Dishes.create({
     	//In here we can specify a  document
     	name: 'Uthappizza',
     	description: 'test'
-    });
+    })
+    .then((dish) => {
+    	console.log(dish);
+   		//exec() will ensure that this is executed
+   		return Dishes.find({}).exec();
+   	})
+   	.then((dishes) => {
+   		console.log(dishes);
 
-    newDish.save()
-    	.then((dish) => {
-    		console.log(dish);
-
-    		//exec() will ensure that this is executed
-    		return Dishes.find({}).exec();
-    	})
-    	.then((dishes) => {
-    		console.log(dishes);
-
-    		return mongoose.connection.db.collection('dishes').drop();
-    	})
-    	.then(() => {
-    		return db.close();
-    	})
-    	.catch((err) => {
-    		console.log(err);
-    	});
+   		return mongoose.connection.db.collection('dishes').drop();
+   	})
+   	.then(() => {
+   		return db.close();
+   	})
+   	.catch((err) => {
+   		console.log(err);
+   	});
 });
